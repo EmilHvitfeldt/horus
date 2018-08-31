@@ -3,6 +3,18 @@
 
 # horus
 
+[![Travis build
+status](https://travis-ci.org/EmilHvitfeldt/horus.svg?branch=master)](https://travis-ci.org/EmilHvitfeldt/horus)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/EmilHvitfeldt/horus?branch=master&svg=true)](https://ci.appveyor.com/project/EmilHvitfeldt/horus)
+[![Coverage
+status](https://codecov.io/gh/EmilHvitfeldt/horus/branch/master/graph/badge.svg)](https://codecov.io/github/EmilHvitfeldt/horus?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/horus)](https://cran.r-project.org/package=horus)
+[![CRAN download
+badge](http://cranlogs.r-pkg.org/badges/horus)](https://CRAN.R-project.org/package=horus)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
 **WIP – Very early build, things are very likely to change – WIP**
 
 The goal of horus is to allow quick visualization methods for common
