@@ -1,0 +1,22 @@
+Package: horus
+Title: Visual Tools To Help Machine Learning model Selection
+Version: 0.0.0.9000
+Authors@R: person("Emil", "hvitfeldt", , "emilhhvitfeldt@gmail.com", c("aut", "cre"))
+Description: Includes a suite of functions that visually aids the understanding
+    and model selection of a wide array of machine learning applications.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 2.10)
+Imports: 
+    dplyr,
+    ggplot2,
+    glue,
+    magrittr,
+    rlang,
+    Rtsne,
+    tibble,
+    tidyr,
+    tidytext
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
