@@ -4,15 +4,25 @@
 \alias{viz_dispersion}
 \title{Vizualize lexical dispersion plot}
 \usage{
-viz_dispersion(data, var, words = 10)
+viz_dispersion(data, var, group, words = 10, symbol = NULL,
+  alpha = 0.7)
 }
 \arguments{
 \item{data}{A data.frame.}
 
-\item{var}{variable that contains the words}
+\item{var}{variable that contains the words to be visualized.}
+
+\item{group}{If present with show a group for each line with the words color
+coded.}
 
 \item{words}{Numerical or character. If numerical it will display the n
 most common words. If character will show the location of said strings.}
+
+\item{symbol}{The word symbol. Default to is 18 (filed diamond) when number
+of points are less then 200 and to 108 (vertical line) when there are more
+then 200 points.}
+
+\item{alpha}{color transperency of the word symbols.}
 }
 \value{
 ggplot2 object.
@@ -21,10 +31,11 @@ ggplot2 object.
 Vizualize lexical dispersion plot
 }
 \examples{
-
 library(tidytext)
 
-text_data <- tidytext::unnest_tokens(fairy_tales, text, text)
-viz_dispersion(text_data, text)
-viz_dispersion(text_data, text, "kissed")
+text_data <- unnest_tokens(fairy_tales, word, text)
+viz_dispersion(text_data, word)
+viz_dispersion(text_data, word, words = c("branches", "not a word"))
+viz_dispersion(text_data, word, symbol = "2")
+viz_dispersion(text_data, word, group = book)
 }
