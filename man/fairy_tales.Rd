@@ -4,7 +4,9 @@
 \name{fairy_tales}
 \alias{fairy_tales}
 \title{Sample of 5 fairly tales from H.C. Andersen}
-\format{A tibble with 486 obs. of 2 variables.}
+\format{
+A tibble with 486 obs. of 2 variables.
+}
 \usage{
 fairy_tales
 }

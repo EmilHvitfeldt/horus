@@ -4,8 +4,7 @@
 \alias{viz_dispersion}
 \title{Vizualize lexical dispersion plot}
 \usage{
-viz_dispersion(data, var, group, words = 10, symbol = NULL,
-  alpha = 0.7)
+viz_dispersion(data, var, group, words = 10, symbol = NULL, alpha = 0.7)
 }
 \arguments{
 \item{data}{A data.frame.}

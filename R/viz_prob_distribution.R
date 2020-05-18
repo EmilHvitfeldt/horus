@@ -51,7 +51,8 @@ viz_prob_distribution.model_fit <- function(model, new_data, truth = NULL) {
       pivot_longer(cols = -truth) %>%
       mutate(correct = factor(gsub(".pred_", "", .data$name) == .data$truth,
                               c(TRUE, FALSE),
-                              c("Yes", "No")))
+                              c("Yes", "No"))) %>%
+      dplyr::filter(gsub(".pred_", "", .data$name) == .data$truth)
   }
 
   out <- plotting_data %>%
