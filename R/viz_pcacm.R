@@ -29,10 +29,14 @@ viz_pcacm <- function(x, n_pca = 10, n_var = 10) {
     mutate(var = fct_relevel(var, order)) %>%
     ggplot(aes(var, fct_rev(fct_relevel(name, paste0("PC", seq_len(n_pca)))), fill = value)) +
     geom_raster() +
-    scale_fill_gradient2(low = "purple",
-                         mid = "grey90",
-                         high ="orange") +
+    scale_fill_gradient2(
+      low = "purple",
+      mid = "grey90",
+      high = "orange"
+    ) +
     theme_minimal() +
-    labs(y = "Principle Component",
-         x = "Variable")
+    labs(
+      y = "Principle Component",
+      x = "Variable"
+    )
 }

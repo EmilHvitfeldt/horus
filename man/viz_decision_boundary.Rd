@@ -30,7 +30,7 @@ Title
 library(parsnip)
 library(workflows)
 lm_spec <- svm_rbf() \%>\%
-set_mode("classification") \%>\%
+  set_mode("classification") \%>\%
   set_engine("kernlab")
 
 lr_fit <- workflow() \%>\%

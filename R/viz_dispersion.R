@@ -24,27 +24,28 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 
   var <- rlang::ensym(var)
 
   ## TODO implement helper function for this
-  if(class(words) == "numeric") {
+  if (class(words) == "numeric") {
     words <- dplyr::count(data, !!var, sort = TRUE) %>%
       dplyr::slice(seq_len(words))
 
     vec <- dplyr::pull(words, !!var)
   }
-  if(any(class(words) == "character")) {
+  if (any(class(words) == "character")) {
     vec <- words
   }
 
-  if(missing(group)) {
+  if (missing(group)) {
+    factors <- dispersion_factor(dplyr::pull(data, !!var), vec)
 
-  factors <- dispersion_factor(dplyr::pull(data, !!var), vec)
+    plot_data <- data %>%
+      dplyr::mutate_(
+        x = ~ dplyr::row_number(),
+        y = ~factors
+      ) %>%
+      tidyr::drop_na() %>%
+      dplyr::select_(.dots = c("x", "y"))
 
-  plot_data <- data %>%
-    dplyr::mutate_(x = ~ dplyr::row_number(),
-                   y = ~ factors) %>%
-    tidyr::drop_na() %>%
-    dplyr::select_(.dots = c("x", "y"))
-
-  x_limit <- nrow(data)
+    x_limit <- nrow(data)
   } else {
     group <- rlang::ensym(group)
 
@@ -52,10 +53,11 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 
       dplyr::mutate(data = purrr::map(data, ~ {
         factors <- dispersion_factor(dplyr::pull(.x, !!var), vec)
         .x %>%
-          dplyr::mutate_(x = ~ seq_len(nrow(.x)),
-                         color = ~ factors)
-        }
-                                      )) %>%
+          dplyr::mutate_(
+            x = ~ seq_len(nrow(.x)),
+            color = ~factors
+          )
+      })) %>%
       tidyr::unnest() %>%
       tidyr::drop_na() %>%
       dplyr::select_(.dots = c("x", "color", "y" = "book"))
@@ -65,11 +67,11 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 
       max()
   }
 
-  if(is.null(symbol)) {
+  if (is.null(symbol)) {
     symbol <- ifelse(nrow(plot_data) > 200, 108, 18)
   }
 
-  if(missing(group)) {
+  if (missing(group)) {
     base_plot <- ggplot2::ggplot(plot_data) +
       ggplot2::aes_(~x, ~y)
   } else {
@@ -81,9 +83,11 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 
     ggplot2::scale_y_discrete(drop = FALSE) +
     ggplot2::xlim(c(1, x_limit)) +
     ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(shape = c(18)))) +
-    ggplot2::labs(x = "Word Offset",
-                  y = NULL,
-                  title = "Lexical Dispersion Plot")
+    ggplot2::labs(
+      x = "Word Offset",
+      y = NULL,
+      title = "Lexical Dispersion Plot"
+    )
 }
 
 dispersion_factor <- function(x, names) {
@@ -91,5 +95,6 @@ dispersion_factor <- function(x, names) {
   names(replacement) <- names
 
   factor(dplyr::recode(x, !!!replacement,
-                       .default = NA_integer_), levels = replacement, labels = names)
+    .default = NA_integer_
+  ), levels = replacement, labels = names)
 }

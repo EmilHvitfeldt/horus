@@ -22,7 +22,9 @@ viz_tsne <- function(data, label) {
     ggplot2::ggplot() +
     ggplot2::aes_string(names[1], names[2], color = "Label") +
     ggplot2::geom_point() +
-    ggplot2::labs(x = "",
-                  y = "",
-                  title = "t-SNE Manifold")
+    ggplot2::labs(
+      x = "",
+      y = "",
+      title = "t-SNE Manifold"
+    )
 }

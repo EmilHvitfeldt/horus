@@ -15,7 +15,8 @@ viz_prob_distribution <- function(model, new_data, truth) {
 #' @export
 viz_prob_distribution.default <- function(model, new_data, truth) {
   stop("`model` must be a `model_fit` object from the parsnip package.",
-       call. = FALSE)
+    call. = FALSE
+  )
 }
 
 #' @rdname viz_prob_distribution
@@ -46,9 +47,11 @@ viz_prob_distribution.model_fit <- function(model, new_data, truth = NULL) {
     plotting_data <- plotting_data %>%
       mutate(truth = truth) %>%
       pivot_longer(cols = -truth) %>%
-      mutate(correct = factor(gsub(".pred_", "", .data$name) == .data$truth,
-                              c(TRUE, FALSE),
-                              c("Yes", "No"))) %>%
+      mutate(correct = factor(
+        gsub(".pred_", "", .data$name) == .data$truth,
+        c(TRUE, FALSE),
+        c("Yes", "No")
+      )) %>%
       dplyr::filter(gsub(".pred_", "", .data$name) == .data$truth)
   }
 

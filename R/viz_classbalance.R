@@ -15,7 +15,7 @@ viz_classbalance <- function(data, variable, n_max = 25) {
 
   n_vars <- length(table(dplyr::pull(data, !!enquo_variable)))
   if (n_vars > n_max) {
-    cat(paste0("The number of catagories is ", n_vars, ", only the first " , n_max, " is shown."))
+    cat(paste0("The number of catagories is ", n_vars, ", only the first ", n_max, " is shown."))
     data[[quo_name(enquo_variable)]] <- data[[quo_name(enquo_variable)]] %>%
       as.factor() %>%
       forcats::fct_infreq() %>%

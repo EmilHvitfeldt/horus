@@ -1,6 +1,6 @@
 set.seed(12345)
 library(tidyverse)
-#devtools::install_github("EmilHvitfeldt/hcandersenr")
+# devtools::install_github("EmilHvitfeldt/hcandersenr")
 select_books <- hcandersenr::hcandersen_en %>%
   pull(book) %>%
   unique() %>%

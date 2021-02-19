@@ -16,7 +16,7 @@
 #' library(parsnip)
 #' library(workflows)
 #' lm_spec <- svm_rbf() %>%
-#' set_mode("classification") %>%
+#'   set_mode("classification") %>%
 #'   set_engine("kernlab")
 #'
 #' lr_fit <- workflow() %>%
@@ -76,5 +76,6 @@ viz_decision_boundary <- function(x, new_data, grid = TRUE, resolution = 100,
     ggplot(aes_string(predictors[1], predictors[2], fill = ".pred_class")) +
     geom_raster(alpha = 0.2) +
     geom_point(aes_string(predictors[1], predictors[2], fill = response),
-               color = "black", shape = 22, data = new_data, inherit.aes = FALSE)
+      color = "black", shape = 22, data = new_data, inherit.aes = FALSE
+    )
 }
