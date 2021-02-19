@@ -31,5 +31,6 @@ viz_classbalance <- function(data, variable, n_max = 25) {
 
   ggplot(data, aes(!!enquo_variable)) +
     geom_bar() +
-    labs(title = title)
+    labs(title = title) +
+    theme_minimal()
 }

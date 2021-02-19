@@ -88,7 +88,8 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL,
       x = "Word Offset",
       y = NULL,
       title = "Lexical Dispersion Plot"
-    )
+    ) +
+    theme_minimal()
 }
 
 dispersion_factor <- function(x, names) {

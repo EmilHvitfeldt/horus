@@ -24,5 +24,6 @@ viz_residuals <- function(fit, new_data) {
   augment(fit, new_data = new_data) %>%
     ggplot(aes(.pred, .resid)) +
     geom_point() +
-    geom_abline(slope = 0, intercept = 0)
+    geom_abline(slope = 0, intercept = 0) +
+    theme_minimal()
 }

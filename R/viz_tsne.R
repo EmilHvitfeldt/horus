@@ -27,5 +27,6 @@ viz_tsne <- function(data, label) {
       x = "",
       y = "",
       title = "t-SNE Manifold"
-    )
+    ) +
+    theme_minimal()
 }

@@ -36,9 +36,9 @@ viz_pcacm <- function(x, n_pca = 10, n_var = 10) {
       mid = "grey90",
       high = "orange"
     ) +
-    theme_minimal() +
     labs(
       y = "Principle Component",
       x = "Variable"
-    )
+    ) +
+    theme_minimal()
 }

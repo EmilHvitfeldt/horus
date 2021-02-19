@@ -77,5 +77,6 @@ viz_decision_boundary <- function(x, new_data, grid = TRUE, resolution = 100,
     geom_raster(alpha = 0.2) +
     geom_point(aes_string(predictors[1], predictors[2], fill = response),
       color = "black", shape = 22, data = new_data, inherit.aes = FALSE
-    )
+    ) +
+    theme_minimal()
 }
