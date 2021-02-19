@@ -30,6 +30,7 @@ ggplot2 object.
 Vizualize lexical dispersion plot
 }
 \examples{
+\dontrun{
 library(tidytext)
 
 text_data <- unnest_tokens(fairy_tales, word, text)
@@ -37,4 +38,5 @@ viz_dispersion(text_data, word)
 viz_dispersion(text_data, word, words = c("branches", "not a word"))
 viz_dispersion(text_data, word, symbol = "2")
 viz_dispersion(text_data, word, group = book)
+}
 }

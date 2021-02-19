@@ -12,6 +12,7 @@
 #' @param alpha color transperency of the word symbols.
 #' @return ggplot2 object.
 #' @examples
+#' \dontrun{
 #' library(tidytext)
 #'
 #' text_data <- unnest_tokens(fairy_tales, word, text)
@@ -19,6 +20,7 @@
 #' viz_dispersion(text_data, word, words = c("branches", "not a word"))
 #' viz_dispersion(text_data, word, symbol = "2")
 #' viz_dispersion(text_data, word, group = book)
+#' }
 #' @export
 viz_dispersion <- function(data, var, group, words = 10, symbol = NULL,
                            alpha = 0.7) {
