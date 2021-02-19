@@ -6,3 +6,7 @@
 ^LICENSE\.md$
 ^horus\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

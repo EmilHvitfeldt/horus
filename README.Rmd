@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # horus <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/EmilHvitfeldt/horus/workflows/R-CMD-check/badge.svg)](https://github.com/EmilHvitfeldt/horus/actions)
 <!-- badges: end -->
 
 **WIP -- Very early build, things are very likely to change -- WIP**
