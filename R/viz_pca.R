@@ -47,7 +47,7 @@ viz_pca <- function(data, label, components = c(1, 2), loadings = FALSE) {
       data = loadings_data, inherit.aes = FALSE,
       arrow = arrow
       ) +
-      ggplot2::geom_text(ggplot2::aes_string(names[1], names[2], label = "rowname"),
+      geom_text(ggplot2::aes_string(names[1], names[2], label = "rowname"),
         data = loadings_data, inherit.aes = FALSE
       )
   }

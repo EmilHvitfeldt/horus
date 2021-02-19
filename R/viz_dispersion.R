@@ -20,7 +20,8 @@
 #' viz_dispersion(text_data, word, symbol = "2")
 #' viz_dispersion(text_data, word, group = book)
 #' @export
-viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 0.7) {
+viz_dispersion <- function(data, var, group, words = 10, symbol = NULL,
+                           alpha = 0.7) {
   var <- rlang::ensym(var)
 
   ## TODO implement helper function for this
@@ -82,7 +83,7 @@ viz_dispersion <- function(data, var, group, words = 10, symbol = NULL, alpha = 
     ggplot2::geom_point(shape = symbol, alpha = alpha) +
     ggplot2::scale_y_discrete(drop = FALSE) +
     ggplot2::xlim(c(1, x_limit)) +
-    ggplot2::guides(color = ggplot2::guide_legend(override.aes = list(shape = c(18)))) +
+    ggplot2::guides(color = guide_legend(override.aes = list(shape = c(18)))) +
     ggplot2::labs(
       x = "Word Offset",
       y = NULL,

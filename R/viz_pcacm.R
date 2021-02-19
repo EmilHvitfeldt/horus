@@ -26,8 +26,10 @@ viz_pcacm <- function(x, n_pca = 10, n_var = 10) {
 
   tidy_rotation %>%
     filter(var %in% order) %>%
-    mutate(var = fct_relevel(var, order)) %>%
-    ggplot(aes(var, fct_rev(fct_relevel(name, paste0("PC", seq_len(n_pca)))), fill = value)) +
+    mutate(var = fct_relevel(var, order),
+           name = fct_relevel(name, paste0("PC", seq_len(n_pca))),
+           name = fct_rev(name)) %>%
+    ggplot(aes(var, name, fill = value)) +
     geom_raster() +
     scale_fill_gradient2(
       low = "purple",

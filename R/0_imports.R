@@ -5,7 +5,9 @@
 #' @importFrom rlang .data enquo quo_name set_names
 #' @importFrom parsnip augment
 #' @importFrom ggplot2 labs ggplot aes geom_point geom_abline theme_minimal
-#' @importFrom ggplot2 geom_raster aes_string scale_fill_gradient2
+#' @importFrom ggplot2 geom_raster aes_string scale_fill_gradient2 guide_legend
+#' @importFrom ggplot2 geom_text
+#' @importFrom glue glue
 #' @importFrom stats prcomp var predict
 #' @importFrom readr parse_number
 #' @importFrom forcats fct_relevel fct_rev
