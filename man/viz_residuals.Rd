@@ -4,7 +4,7 @@
 \alias{viz_residuals}
 \title{Residual plot of model}
 \usage{
-viz_residuals(fit, data)
+viz_residuals(fit, new_data)
 }
 \arguments{
 \item{fit}{a parsnip model object}

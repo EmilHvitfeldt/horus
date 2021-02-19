@@ -14,10 +14,8 @@
 #'   fit(mpg ~ ., data = mtcars)
 #'
 #' viz_residuals(reg, mtcars)
-viz_residuals <- function(fit, data) {
-  predict(fit, data) %>%
-    mutate(.observed = pull(data, all_of(fit$preproc$y_var))) %>%
-    mutate(.resid = .observed - .pred) %>%
+viz_residuals <- function(fit, new_data) {
+  augment(reg, new_data = new_data) %>%
     ggplot(aes(.pred, .resid)) +
     geom_point() +
     geom_abline(slope = 0, intercept = 0)
