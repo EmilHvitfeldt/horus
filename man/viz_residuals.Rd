@@ -9,7 +9,7 @@ viz_residuals(fit, new_data)
 \arguments{
 \item{fit}{a parsnip model object}
 
-\item{data}{data.frame to create residuals with}
+\item{new_data}{A data frame or matrix.}
 }
 \value{
 a ggplot2 object
@@ -25,4 +25,10 @@ reg <- linear_reg() \%>\%
   fit(mpg ~ ., data = mtcars)
 
 viz_residuals(reg, mtcars)
+
+linear_reg() \%>\%
+  set_engine("lm") \%>\%
+  set_mode("regression") \%>\%
+  fit(mpg ~ ., data = mtcars) \%>\%
+  viz_residuals(mtcars)
 }

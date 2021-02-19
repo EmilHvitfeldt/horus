@@ -21,9 +21,6 @@ viz_prob_distribution.default <- function(model, new_data, truth) {
 #' @rdname viz_prob_distribution
 #' @export
 #'
-#' @importFrom tidyr pivot_longer
-#' @importFrom dplyr mutate everything
-#' @importFrom rlang .data
 #' @examples
 #' library(parsnip)
 #' library(ranger)

@@ -7,7 +7,6 @@
 #'
 #' @return ggplot2 object.
 #' @export
-#' @importFrom rlang enquo quo_name
 #'
 #' @examples
 #' viz_classbalance(mtcars, vs)
