@@ -18,6 +18,7 @@ ggplot2 object.
 Vizualize t-SNE
 }
 \examples{
+library(dplyr)
 viz_tsne(iris, Species)
-viz_tsne(dplyr::select(iris, -Species), Sepal.Length)
+viz_tsne(select(iris, -Species), Sepal.Length)
 }

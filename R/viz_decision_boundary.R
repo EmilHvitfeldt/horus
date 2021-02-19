@@ -22,28 +22,28 @@
 #' lr_fit <- workflow() %>%
 #'   add_formula(Species ~ Petal.Length + Petal.Width) %>%
 #'   add_model(lm_spec) %>%
-#'   fit(tidyr::drop_na(iris))
+#'   fit(iris)
 #'
 #' viz_decision_boundary(lr_fit, iris)
 viz_decision_boundary <- function(x, new_data, grid = TRUE, resolution = 100,
                                   expand = 0.1) {
   if (names(x$pre$actions) == "variables") {
-    predictors <- rlang::eval_tidy(
+    predictors <- eval_tidy(
       x$pre$actions$variables$predictors,
       set_names(names(new_data))
     )
 
-    response <- rlang::eval_tidy(
+    response <- eval_tidy(
       x$pre$actions$variables$outcome,
       set_names(names(new_data))
     )
 
     if (length(predictors) != 2) {
-      rlang::abort("`x` must have only 2 predictors.")
+      abort("`x` must have only 2 predictors.")
     }
   } else if (names(x$pre$actions) == "formula") {
     if (length(x$pre$actions$formula$formula) != 3) {
-      rlang::abort("`x` must have only 2 predictors.")
+      abort("`x` must have only 2 predictors.")
     }
     predictors <- x$pre$actions$formula$formula[[3]][c(2, 3)]
     predictors <- as.character(predictors)

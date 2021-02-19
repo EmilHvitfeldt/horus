@@ -36,7 +36,7 @@ lm_spec <- svm_rbf() \%>\%
 lr_fit <- workflow() \%>\%
   add_formula(Species ~ Petal.Length + Petal.Width) \%>\%
   add_model(lm_spec) \%>\%
-  fit(tidyr::drop_na(iris))
+  fit(iris)
 
 viz_decision_boundary(lr_fit, iris)
 }

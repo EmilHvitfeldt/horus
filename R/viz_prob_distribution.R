@@ -38,7 +38,7 @@ viz_prob_distribution.model_fit <- function(model, new_data, truth = NULL) {
     stop("`model` must be a classification model.", call. = FALSE)
   }
 
-  plotting_data <- stats::predict(model, new_data, type = "prob")
+  plotting_data <- predict(model, new_data, type = "prob")
 
   if (is.null(truth)) {
     plotting_data <- plotting_data %>%
@@ -52,20 +52,20 @@ viz_prob_distribution.model_fit <- function(model, new_data, truth = NULL) {
         c(TRUE, FALSE),
         c("Yes", "No")
       )) %>%
-      dplyr::filter(gsub(".pred_", "", .data$name) == .data$truth)
+      filter(gsub(".pred_", "", .data$name) == .data$truth)
   }
 
   out <- plotting_data %>%
-    ggplot2::ggplot(ggplot2::aes(.data$value)) +
-    ggplot2::geom_histogram(bins = 50) +
-    ggplot2::facet_grid(~ .data$name) +
-    ggplot2::theme_minimal() +
-    ggplot2::labs(x = "Predicted probability")
+    ggplot(aes(.data$value)) +
+    geom_histogram(bins = 50) +
+    facet_grid(~ .data$name) +
+    theme_minimal() +
+    labs(x = "Predicted probability")
 
   if (!is.null(truth)) {
     out <- out +
-      ggplot2::aes(fill = .data$correct) +
-      ggplot2::labs(fill = "Correctlty predicted")
+      aes(fill = .data$correct) +
+      labs(fill = "Correctlty predicted")
   }
   out
 }
