@@ -4,16 +4,13 @@
 \alias{viz_decision_boundary}
 \title{Draw Decision boundary for Classification model}
 \usage{
-viz_decision_boundary(x, new_data, grid = TRUE, resolution = 100, expand = 0.1)
+viz_decision_boundary(x, new_data, resolution = 100, expand = 0.1)
 }
 \arguments{
-\item{x}{fitted `workflows::workflow` object.}
+\item{x}{trained `workflows::workflow` object.}
 
 \item{new_data}{A data frame or tibble for whom the preprocessing will be
 applied.}
-
-\item{grid}{Logical, whether to use grid method to show decision boundary.
-Defaults to TRUE.}
 
 \item{resolution}{Number of squared in grid. Defaults to 100.}
 
@@ -28,19 +25,19 @@ The chart have been minimally modified to allow for easier styling.}
 }
 \description{
 This function is mostly useful in an educational setting. Can only be used
-with fitted workflow objects with 2 numeric predictor variables.
+with trained workflow objects with 2 numeric predictor variables.
 }
 \examples{
 library(parsnip)
 library(workflows)
-lm_spec <- svm_rbf() \%>\%
+svm_spec <- svm_rbf() \%>\%
   set_mode("classification") \%>\%
   set_engine("kernlab")
 
-lr_fit <- workflow() \%>\%
+svm_fit <- workflow() \%>\%
   add_formula(Species ~ Petal.Length + Petal.Width) \%>\%
-  add_model(lm_spec) \%>\%
+  add_model(svm_spec) \%>\%
   fit(iris)
 
-viz_decision_boundary(lr_fit, iris)
+viz_decision_boundary(svm_fit, iris)
 }
