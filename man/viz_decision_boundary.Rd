@@ -40,4 +40,8 @@ svm_fit <- workflow() \%>\%
   fit(iris)
 
 viz_decision_boundary(svm_fit, iris)
+
+viz_decision_boundary(svm_fit, iris, resolution = 20)
+
+viz_decision_boundary(svm_fit, iris, expand = 1)
 }

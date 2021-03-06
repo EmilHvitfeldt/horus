@@ -29,6 +29,10 @@
 #'   fit(iris)
 #'
 #' viz_decision_boundary(svm_fit, iris)
+#'
+#' viz_decision_boundary(svm_fit, iris, resolution = 20)
+#'
+#' viz_decision_boundary(svm_fit, iris, expand = 1)
 viz_decision_boundary <- function(x, new_data, resolution = 100, expand = 0.1) {
 
   if (!inherits(x, "workflow")) {
@@ -60,6 +64,10 @@ viz_decision_boundary <- function(x, new_data, resolution = 100, expand = 0.1) {
     predictors <- as.character(predictors)
 
     response <- as.character(x$pre$actions$formula$formula[[2]])
+  } else if (names(x$pre$actions) == "recipe") {
+    var_info <- x$pre$actions$recipe$recipe$var_info
+    predictors <- var_info$variable[var_info$role == "predictor"]
+    response <- var_info$variable[var_info$role == "outcome"]
   }
 
   predict_area <- new_data %>%
