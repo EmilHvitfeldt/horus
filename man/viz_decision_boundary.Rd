@@ -2,14 +2,15 @@
 % Please edit documentation in R/viz_decision_boundary.R
 \name{viz_decision_boundary}
 \alias{viz_decision_boundary}
-\title{Title}
+\title{Draw Decision boundary for Classification model}
 \usage{
 viz_decision_boundary(x, new_data, grid = TRUE, resolution = 100, expand = 0.1)
 }
 \arguments{
-\item{x}{fitted workflow object}
+\item{x}{fitted `workflows::workflow` object.}
 
-\item{new_data}{data frame}
+\item{new_data}{A data frame or tibble for whom the preprocessing will be
+applied.}
 
 \item{grid}{Logical, whether to use grid method to show decision boundary.
 Defaults to TRUE.}
@@ -17,14 +18,17 @@ Defaults to TRUE.}
 \item{resolution}{Number of squared in grid. Defaults to 100.}
 
 \item{expand}{Expansion rate. Defaults to 0.1. This means that the width and
-height of the shaded area is 10% wider then the rectangle containing the
-data.}
+  height of the shaded area is 10% wider then the rectangle containing the
+  data.
+
+The chart have been minimally modified to allow for easier styling.}
 }
 \value{
-ggplot object
+`ggplot2::ggplot` object
 }
 \description{
-Title
+This function is mostly useful in an educational setting. Can only be used
+with fitted workflow objects with 2 numeric predictor variables.
 }
 \examples{
 library(parsnip)

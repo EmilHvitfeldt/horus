@@ -1,7 +1,11 @@
-#' Title
+#' Draw Decision boundary for Classification model
 #'
-#' @param x fitted workflow object
-#' @param new_data data frame
+#' This function is mostly useful in an educational setting. Can only be used
+#' with fitted workflow objects with 2 numeric predictor variables.
+#'
+#' @param x fitted `workflows::workflow` object.
+#' @param new_data A data frame or tibble for whom the preprocessing will be
+#'   applied.
 #' @param grid Logical, whether to use grid method to show decision boundary.
 #'   Defaults to TRUE.
 #' @param resolution Number of squared in grid. Defaults to 100.
@@ -9,7 +13,9 @@
 #'   height of the shaded area is 10% wider then the rectangle containing the
 #'   data.
 #'
-#' @return ggplot object
+#' The chart have been minimally modified to allow for easier styling.
+#'
+#' @return `ggplot2::ggplot` object
 #' @export
 #'
 #' @examples
