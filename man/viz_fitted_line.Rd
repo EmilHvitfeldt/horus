@@ -22,15 +22,13 @@ applied.}
 \item{resolution}{Number of squared in grid. Defaults to 100.}
 
 \item{expand}{Expansion rate. Defaults to 0.1. This means that the width of
-the plotting area is 10% wider then the data.}
+the plotting area is 10 percent wider then the data.}
 
 \item{color}{Character, color of the fitted line. Passed to `geom_line()`.
 Defaults to `"blue"`.}
 
 \item{size}{Numeric, size of the fitted line. Passed to `geom_line()`.
-  Defaults to `1`.
-
-The chart have been minimally modified to allow for easier styling.}
+Defaults to `1`.}
 }
 \value{
 `ggplot2::ggplot` object
@@ -38,6 +36,9 @@ The chart have been minimally modified to allow for easier styling.}
 \description{
 This function is mostly useful in an educational setting. Can only be used
 with trained workflow objects with 1 numeric predictor variable.
+}
+\details{
+The chart have been minimally modified to allow for easier styling.
 }
 \examples{
 library(parsnip)

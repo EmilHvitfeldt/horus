@@ -5,15 +5,16 @@
 #'
 #' @param x trained `workflows::workflow` object.
 #' @param new_data A data frame or tibble for whom the preprocessing will be
-#'   applied.
+#'     applied.
 #' @param resolution Number of squared in grid. Defaults to 100.
 #' @param expand Expansion rate. Defaults to 0.1. This means that the width of
-#'   the plotting area is 10% wider then the data.
+#'     the plotting area is 10 percent wider then the data.
 #' @param color Character, color of the fitted line. Passed to `geom_line()`.
-#'   Defaults to `"blue"`.
+#'     Defaults to `"blue"`.
 #' @param size Numeric, size of the fitted line. Passed to `geom_line()`.
-#'   Defaults to `1`.
+#'     Defaults to `1`.
 #'
+#' @details
 #' The chart have been minimally modified to allow for easier styling.
 #'
 #' @return `ggplot2::ggplot` object
