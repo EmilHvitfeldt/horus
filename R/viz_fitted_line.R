@@ -60,7 +60,7 @@ viz_fitted_line <- function(x, new_data, resolution = 100, expand = 0.1,
         var_names$response
       )
     ) +
-    geom_point() +
+    geom_point(alpha = 0.5) +
     geom_line(
       aes_string(
         var_names$predictors[1],
