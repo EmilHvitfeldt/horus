@@ -39,3 +39,8 @@ viz_pca(iris, Species)
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+## Advanced Gallary
+
+[Random Forrest variability
+Visualization](https://gist.github.com/EmilHvitfeldt/e81f9d462c423978f515f036c8ad0232)
