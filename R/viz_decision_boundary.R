@@ -42,7 +42,7 @@ viz_decision_boundary <- function(x, new_data, resolution = 100, expand = 0.1) {
     abort("`x` must be a trained `workflow` object.")
   }
 
-  var_names <- extract_variable_names(x, new_data)
+  var_names <- extract_variable_names(x, new_data, n_pred = 2)
 
   predict_area <- new_data %>%
     select(all_of(var_names$predictors)) %>%

@@ -3,7 +3,7 @@
 #' @importFrom dplyr select_ slice summarize
 #' @importFrom forcats fct_infreq fct_lump fct_relevel fct_rev
 #' @importFrom ggplot2 aes aes_ aes_string arrow facet_grid geom_abline
-#' @importFrom ggplot2 geom_bar geom_histogram geom_point geom_raster
+#' @importFrom ggplot2 geom_bar geom_histogram geom_line geom_point geom_raster
 #' @importFrom ggplot2 geom_segment geom_text ggplot guide_legend guides labs
 #' @importFrom ggplot2 scale_fill_gradient2 scale_y_discrete theme_minimal unit
 #' @importFrom ggplot2 xlim
