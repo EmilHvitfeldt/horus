@@ -42,45 +42,29 @@ viz_decision_boundary <- function(x, new_data, resolution = 100, expand = 0.1) {
     abort("`x` must be a trained `workflow` object.")
   }
 
-  if (names(x$pre$actions) == "variables") {
-    predictors <- eval_tidy(
-      x$pre$actions$variables$predictors,
-      set_names(names(new_data))
-    )
-
-    response <- eval_tidy(
-      x$pre$actions$variables$outcome,
-      set_names(names(new_data))
-    )
-
-    if (length(predictors) != 2) {
-      abort("`x` must have only 2 predictors.")
-    }
-  } else if (names(x$pre$actions) == "formula") {
-    if (length(x$pre$actions$formula$formula) != 3) {
-      abort("`x` must have only 2 predictors.")
-    }
-    predictors <- x$pre$actions$formula$formula[[3]][c(2, 3)]
-    predictors <- as.character(predictors)
-
-    response <- as.character(x$pre$actions$formula$formula[[2]])
-  } else if (names(x$pre$actions) == "recipe") {
-    var_info <- x$pre$actions$recipe$recipe$var_info
-    predictors <- var_info$variable[var_info$role == "predictor"]
-    response <- var_info$variable[var_info$role == "outcome"]
-  }
+  var_names <- extract_variable_names(x, new_data)
 
   predict_area <- new_data %>%
-    select(all_of(predictors)) %>%
+    select(all_of(var_names$predictors)) %>%
     lapply(expanded_seq, expand, resolution) %>%
     expand.grid()
 
   predict_area %>%
     bind_cols(predict(x, predict_area)) %>%
-    ggplot(aes_string(predictors[1], predictors[2], fill = ".pred_class")) +
+    ggplot(
+      aes_string(
+        var_names$predictors[1],
+        var_names$predictors[2],
+        fill = ".pred_class"
+      )
+    ) +
     geom_raster(alpha = 0.2) +
     geom_point(
-      aes_string(predictors[1], predictors[2], fill = response),
+      aes_string(
+        var_names$predictors[1],
+        var_names$predictors[2],
+        fill = var_names$response
+      ),
       color = "black", shape = 22, data = new_data, inherit.aes = FALSE
     ) +
     theme_minimal()
