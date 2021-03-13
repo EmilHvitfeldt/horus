@@ -32,8 +32,10 @@ Imports:
 Suggests: 
     covr,
     kernlab,
+    kknn,
     ranger,
-    testthat
+    testthat,
+    vdiffr
 Remotes: 
     tidymodels/parsnip
 Encoding: UTF-8
