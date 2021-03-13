@@ -33,6 +33,13 @@
 #' viz_decision_boundary(svm_fit, iris, resolution = 20)
 #'
 #' viz_decision_boundary(svm_fit, iris, expand = 1)
+#'
+#' svm_multi_fit <- workflow() %>%
+#'   add_formula(class ~ umap_1 + umap_2) %>%
+#'   add_model(svm_spec) %>%
+#'   fit(mnist_sample)
+#'
+#' viz_decision_boundary(svm_multi_fit, mnist_sample)
 viz_decision_boundary <- function(x, new_data, resolution = 100, expand = 0.1) {
 
   if (!inherits(x, "workflow")) {
