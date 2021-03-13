@@ -2,7 +2,7 @@
 % Please edit documentation in R/viz_classbalance.R
 \name{viz_classbalance}
 \alias{viz_classbalance}
-\title{Viszualise}
+\title{Visualise Class Imbalance}
 \usage{
 viz_classbalance(data, variable, n_max = 25)
 }
@@ -18,8 +18,8 @@ Defaults to 25.}
 ggplot2 object.
 }
 \description{
-Viszualise
+Visualise Class Imbalance
 }
 \examples{
-viz_classbalance(mtcars, vs)
+viz_classbalance(mnist_sample, class)
 }

@@ -12,7 +12,7 @@
 #' @importFrom parsnip augment
 #' @importFrom purrr map
 #' @importFrom readr parse_number
-#' @importFrom rlang .data abort enquo ensym eval_tidy quo_name set_names
+#' @importFrom rlang .data abort enquo ensym eval_tidy inform quo_name set_names
 #' @importFrom Rtsne Rtsne
 #' @importFrom stats prcomp predict var
 #' @importFrom tibble as_tibble rownames_to_column tibble

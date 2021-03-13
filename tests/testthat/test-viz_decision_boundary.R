@@ -17,16 +17,19 @@ test_that("viz_decision_boundary works", {
 
   vdiffr::expect_doppelganger(
     "viz_decision_boundary simple",
-    viz_decision_boundary(svm_fit, iris)
+    viz_decision_boundary(svm_fit, iris),
+    "viz_decision_boundary"
   )
 
   vdiffr::expect_doppelganger(
     "viz_decision_boundary resolution",
-    viz_decision_boundary(svm_fit, iris, resolution = 20)
+    viz_decision_boundary(svm_fit, iris, resolution = 20),
+    "viz_decision_boundary"
   )
 
   vdiffr::expect_doppelganger(
     "viz_decision_boundary expand",
-    viz_decision_boundary(svm_fit, iris, expand = 1)
+    viz_decision_boundary(svm_fit, iris, expand = 1),
+    "viz_decision_boundary"
   )
 })

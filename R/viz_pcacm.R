@@ -11,6 +11,10 @@
 #' viz_pcacm(mtcars)
 #' viz_pcacm(USArrests)
 #' viz_pcacm(beaver1)
+#'
+#' viz_pcacm(mtcars, n_pca = 4)
+#' viz_pcacm(mtcars, n_var = 4)
+#' viz_pcacm(mtcars, n_pca = 2, n_var = 6)
 viz_pcacm <- function(x, n_pca = 10, n_var = 10) {
   tidy_rotation <- as.data.frame(prcomp(x, rank = n_pca)$rotation) %>%
     rownames_to_column("var") %>%

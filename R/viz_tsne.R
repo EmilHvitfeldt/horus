@@ -18,7 +18,11 @@ viz_tsne <- function(data, label) {
     as.matrix() %>%
     Rtsne(check_duplicates = FALSE)
 
-  as_tibble(tsne_data$Y) %>%
+  plotting_data <- tsne_data$Y
+
+  colnames(plotting_data) <- names
+
+  as_tibble(plotting_data) %>%
     mutate(Label = pull(data, !!label_enquo)) %>%
     ggplot() +
     aes_string(names[1], names[2], color = "Label") +

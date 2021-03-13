@@ -1,4 +1,4 @@
-#' Viszualise
+#' Visualise Class Imbalance
 #'
 #' @param data A data.frame.
 #' @param variable target variable to show balance for.
@@ -9,18 +9,24 @@
 #' @export
 #'
 #' @examples
-#' viz_classbalance(mtcars, vs)
+#' viz_classbalance(mnist_sample, class)
 viz_classbalance <- function(data, variable, n_max = 25) {
   enquo_variable <- enquo(variable)
 
+  if (!is.factor(data[[quo_name(enquo_variable)]])) {
+    abort("`variable` must be a factor")
+  }
+
   n_vars <- length(table(pull(data, !!enquo_variable)))
   if (n_vars > n_max) {
-    cat(glue("The number of catagories is {n_vars} only the first {n_max} is ",
-             "shown."))
     data[[quo_name(enquo_variable)]] <- data[[quo_name(enquo_variable)]] %>%
       as.factor() %>%
       fct_infreq() %>%
       fct_lump(n_max)
+
+    n_shown <- length(levels(data[[quo_name(enquo_variable)]])) - 1
+    inform(glue("The number of catagories is {n_vars} only the first ",
+                "{n_shown} is shown."))
   }
 
   title <- paste0(
