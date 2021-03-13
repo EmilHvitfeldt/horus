@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Draw Decision boundary for Classification model — viz_decision_boundary • horus</title>
+<title>Draw Probability regions for Classification model — viz_prob_region • horus</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Draw Decision boundary for Classification model — viz_decision_boundary" />
+<meta property="og:title" content="Draw Probability regions for Classification model — viz_prob_region" />
 <meta property="og:description" content="This function is mostly useful in an educational setting. Can only be used
 with trained workflow objects with 2 numeric predictor variables." />
 <meta property="og:image" content="https://emilhvitfeldt.github.io/horus/logo.png" />
@@ -112,9 +112,9 @@ with trained workflow objects with 2 numeric predictor variables." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Draw Decision boundary for Classification model</h1>
+    <h1>Draw Probability regions for Classification model</h1>
     
-    <div class="hidden name"><code>viz_decision_boundary.Rd</code></div>
+    <div class="hidden name"><code>viz_prob_region.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -122,7 +122,7 @@ with trained workflow objects with 2 numeric predictor variables." />
 with trained workflow objects with 2 numeric predictor variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>viz_decision_boundary</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>new_data</span>, resolution <span class='op'>=</span> <span class='fl'>100</span>, expand <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>new_data</span>, resolution <span class='op'>=</span> <span class='fl'>100</span>, expand <span class='op'>=</span> <span class='fl'>0.1</span>, facet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,8 +143,12 @@ applied.</p></td>
     <tr>
       <th>expand</th>
       <td><p>Expansion rate. Defaults to 0.1. This means that the width and
-  height of the shaded area is 10<!-- % wider then the rectangle containing the -->
-  data.</p>
+height of the shaded area is 10<!-- % wider then the rectangle containing the -->
+data.</p></td>
+    </tr>
+    <tr>
+      <th>facet</th>
+      <td><p>Logical, whether to facet chart by class. Defaults to FALSE.</p>
 <p>The chart have been minimally modified to allow for easier styling.</p></td>
     </tr>
     </table>
@@ -156,6 +160,11 @@ applied.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://parsnip.tidymodels.org'>parsnip</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/workflows'>workflows</a></span><span class='op'>)</span>
+
+<span class='va'>iris2</span> <span class='op'>&lt;-</span> <span class='va'>iris</span>
+<span class='va'>iris2</span><span class='op'>$</span><span class='va'>Species</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>iris2</span><span class='op'>$</span><span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"setosa"</span>,
+                        labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"setosa"</span>, <span class='st'>"not setosa"</span><span class='op'>)</span><span class='op'>)</span>
+
 <span class='va'>svm_spec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://parsnip.tidymodels.org/reference/svm_rbf.html'>svm_rbf</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://parsnip.tidymodels.org/reference/set_args.html'>set_mode</a></span><span class='op'>(</span><span class='st'>"classification"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://parsnip.tidymodels.org/reference/set_engine.html'>set_engine</a></span><span class='op'>(</span><span class='st'>"kernlab"</span><span class='op'>)</span>
@@ -163,21 +172,27 @@ applied.</p></td>
 <span class='va'>svm_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://workflows.tidymodels.org//reference/workflow.html'>workflow</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://workflows.tidymodels.org//reference/add_formula.html'>add_formula</a></span><span class='op'>(</span><span class='va'>Species</span> <span class='op'>~</span> <span class='va'>Petal.Length</span> <span class='op'>+</span> <span class='va'>Petal.Width</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://workflows.tidymodels.org//reference/add_model.html'>add_model</a></span><span class='op'>(</span><span class='va'>svm_spec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://generics.r-lib.org/reference/fit.html'>fit</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+  <span class='fu'><a href='https://generics.r-lib.org/reference/fit.html'>fit</a></span><span class='op'>(</span><span class='va'>iris2</span><span class='op'>)</span>
 
-<span class='fu'>viz_decision_boundary</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris</span><span class='op'>)</span>
-</div><div class='img'><img src='viz_decision_boundary-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>viz_decision_boundary</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris</span>, resolution <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
-</div><div class='img'><img src='viz_decision_boundary-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>viz_decision_boundary</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris</span>, expand <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='img'><img src='viz_decision_boundary-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='va'>svm_multi_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://workflows.tidymodels.org//reference/workflow.html'>workflow</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris2</span><span class='op'>)</span>
+</div><div class='img'><img src='viz_prob_region-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris2</span>, resolution <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+</div><div class='img'><img src='viz_prob_region-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris2</span>, expand <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='img'><img src='viz_prob_region-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>svm_fit</span>, <span class='va'>iris2</span>, facet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='viz_prob_region-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>knn_spec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://parsnip.tidymodels.org/reference/nearest_neighbor.html'>nearest_neighbor</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://parsnip.tidymodels.org/reference/set_args.html'>set_mode</a></span><span class='op'>(</span><span class='st'>"classification"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://parsnip.tidymodels.org/reference/set_engine.html'>set_engine</a></span><span class='op'>(</span><span class='st'>"kknn"</span><span class='op'>)</span>
+
+<span class='va'>knn_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://workflows.tidymodels.org//reference/workflow.html'>workflow</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://workflows.tidymodels.org//reference/add_formula.html'>add_formula</a></span><span class='op'>(</span><span class='va'>class</span> <span class='op'>~</span> <span class='va'>umap_1</span> <span class='op'>+</span> <span class='va'>umap_2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://workflows.tidymodels.org//reference/add_model.html'>add_model</a></span><span class='op'>(</span><span class='va'>svm_spec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://workflows.tidymodels.org//reference/add_model.html'>add_model</a></span><span class='op'>(</span><span class='va'>knn_spec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://generics.r-lib.org/reference/fit.html'>fit</a></span><span class='op'>(</span><span class='va'>mnist_sample</span><span class='op'>)</span>
 
-<span class='fu'>viz_decision_boundary</span><span class='op'>(</span><span class='va'>svm_multi_fit</span>, <span class='va'>mnist_sample</span><span class='op'>)</span>
-</div><div class='img'><img src='viz_decision_boundary-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>viz_prob_region</span><span class='op'>(</span><span class='va'>knn_fit</span>, <span class='va'>mnist_sample</span>, facet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='viz_prob_region-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
