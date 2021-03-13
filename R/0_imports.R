@@ -2,11 +2,11 @@
 #' @importFrom dplyr group_by mutate mutate_ pull recode row_number select
 #' @importFrom dplyr select_ slice summarize
 #' @importFrom forcats fct_infreq fct_lump fct_relevel fct_rev
-#' @importFrom ggplot2 aes aes_ aes_string arrow facet_grid geom_abline
-#' @importFrom ggplot2 geom_bar geom_histogram geom_line geom_point geom_raster
-#' @importFrom ggplot2 geom_segment geom_text ggplot guide_legend guides labs
-#' @importFrom ggplot2 scale_fill_gradient2 scale_y_discrete theme_minimal unit
-#' @importFrom ggplot2 xlim
+#' @importFrom ggplot2 aes aes_ aes_string arrow facet_grid facet_wrap
+#' @importFrom ggplot2 geom_abline geom_bar geom_histogram geom_line
+#' @importFrom ggplot2 geom_point geom_raster geom_segment geom_text ggplot
+#' @importFrom ggplot2 guide_legend guides labs scale_alpha scale_fill_gradient2
+#' @importFrom ggplot2 scale_y_discrete theme_minimal unit xlim
 #' @importFrom glue glue
 #' @importFrom magrittr %>%
 #' @importFrom parsnip augment

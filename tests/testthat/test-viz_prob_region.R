@@ -17,6 +17,10 @@ svm_fit <- workflow() %>%
   add_model(svm_spec) %>%
   fit(iris2)
 
+svm_fit_full <- workflow() %>%
+  add_formula(Species ~ Petal.Length + Petal.Width) %>%
+  add_model(svm_spec) %>%
+  fit(iris)
 
 test_that("viz_prob_region works", {
 
@@ -38,3 +42,32 @@ test_that("viz_prob_region works", {
     "viz_prob_region"
   )
 })
+
+test_that("viz_prob_region facet works", {
+
+  expect_error(
+    viz_prob_region(svm_fit_full, iris)
+  )
+
+  vdiffr::expect_doppelganger(
+    "viz_prob_region facet simple",
+    viz_prob_region(svm_fit_full, iris, facet = TRUE),
+    "viz_prob_region"
+  )
+
+  vdiffr::expect_doppelganger(
+    "viz_prob_region facet resolution",
+    viz_prob_region(svm_fit_full, iris, resolution = 20, facet = TRUE),
+    "viz_prob_region"
+  )
+
+  vdiffr::expect_doppelganger(
+    "viz_prob_region facet expand",
+    viz_prob_region(svm_fit_full, iris, expand = 1, facet = TRUE),
+    "viz_prob_region"
+  )
+})
+
+
+
+

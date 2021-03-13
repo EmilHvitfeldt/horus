@@ -4,7 +4,7 @@
 \alias{viz_prob_region}
 \title{Draw Probability regions for Classification model}
 \usage{
-viz_prob_region(x, new_data, resolution = 100, expand = 0.1)
+viz_prob_region(x, new_data, resolution = 100, expand = 0.1, facet = FALSE)
 }
 \arguments{
 \item{x}{trained `workflows::workflow` object.}
@@ -15,8 +15,10 @@ applied.}
 \item{resolution}{Number of squared in grid. Defaults to 100.}
 
 \item{expand}{Expansion rate. Defaults to 0.1. This means that the width and
-  height of the shaded area is 10% wider then the rectangle containing the
-  data.
+height of the shaded area is 10% wider then the rectangle containing the
+data.}
+
+\item{facet}{Logical, whether to facet chart by class. Defaults to FALSE.
 
 The chart have been minimally modified to allow for easier styling.}
 }
@@ -49,4 +51,17 @@ viz_prob_region(svm_fit, iris2)
 viz_prob_region(svm_fit, iris2, resolution = 20)
 
 viz_prob_region(svm_fit, iris2, expand = 1)
+
+viz_prob_region(svm_fit, iris2, facet = TRUE)
+
+knn_spec <- nearest_neighbor() \%>\%
+  set_mode("classification") \%>\%
+  set_engine("kknn")
+
+knn_fit <- workflow() \%>\%
+  add_formula(class ~ umap_1 + umap_2) \%>\%
+  add_model(knn_spec) \%>\%
+  fit(mnist_sample)
+
+viz_prob_region(knn_fit, mnist_sample, facet = TRUE)
 }

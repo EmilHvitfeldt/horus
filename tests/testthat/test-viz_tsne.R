@@ -1,5 +1,8 @@
 library(testthat)
 library(dplyr)
+
+set.seed(1234)
+
 test_that("viz_tsne works", {
 
   vdiffr::expect_doppelganger(
