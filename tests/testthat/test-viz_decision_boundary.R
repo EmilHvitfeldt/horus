@@ -1,5 +1,3 @@
-context("viz-decision-boundary")
-
 library(testthat)
 library(parsnip)
 library(workflows)

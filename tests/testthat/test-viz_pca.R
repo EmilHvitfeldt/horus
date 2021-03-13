@@ -1,4 +1,3 @@
-context("test-viz_pca")
 library(ggplot2)
 
 test_that("it returns a ggplot object", {
