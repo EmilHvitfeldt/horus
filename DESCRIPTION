@@ -35,7 +35,8 @@ Suggests:
     kknn,
     ranger,
     testthat,
-    vdiffr
+    vdiffr,
+    glmnet
 Remotes: 
     tidymodels/parsnip
 Encoding: UTF-8

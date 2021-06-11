@@ -6,7 +6,7 @@
 #' @importFrom ggplot2 geom_abline geom_bar geom_histogram geom_line
 #' @importFrom ggplot2 geom_point geom_raster geom_segment geom_text ggplot
 #' @importFrom ggplot2 guide_legend guides labs scale_alpha scale_fill_gradient2
-#' @importFrom ggplot2 scale_y_discrete theme_minimal unit xlim
+#' @importFrom ggplot2 scale_y_discrete theme_minimal unit xlim scale_x_log10
 #' @importFrom glue glue
 #' @importFrom magrittr %>%
 #' @importFrom parsnip augment
@@ -25,7 +25,7 @@ NULL
 # nocov
 
 utils::globalVariables(
-  c(".pred", ".resid", "name", "value", "contribution")
+  c(".pred", ".resid", "name", "value", "contribution", "lambda")
 )
 
 # nocov end
